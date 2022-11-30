@@ -43,18 +43,13 @@ class DriveUpdater:
         lastHourFrames = [x for x in self.lp.frames if x.time > self.lastFrameTime - datetime.timedelta(hours = 1)] # frames from the last hour
         lastTwoHourFrames = [x for x in self.lp.frames if x.time > self.lastFrameTime - datetime.timedelta(hours = 2)] # frames from the last two hours
         daylightFrames = [x for x in self.lp.frames if x.time.hour >= 8 and x.time.hour <= 18] # frames during daylight
-
+        th_change = str(self.lastFrameTime-lastTwoHourFrames[0].time)
+        h_change = str(self.lastFrameTime - lastHourFrames[0].time)
+        
         # Dictionary to hold all the unique days that have daylight frames
         days={}        
         [days.update({x.time.day:1}) for x in daylightFrames] # This way we only identify days that have frames during the daylight
-        
-        
-        #d_change = str(self.lastFrameTime - lastDayFrames[0].time)
-        th_change = str(self.lastFrameTime-lastTwoHourFrames[0].time)
-        h_change = str(self.lastFrameTime - lastHourFrames[0].time)
-        # this will need to be updated
-        
-        #these comments next to the axs are no longer correct
+
         
         # Determine the size of the figure and create it
         num_rows = 3 + len(days) # First pic rows, 1 hour, 2 hour, then 1 row for each unique day
