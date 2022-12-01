@@ -45,7 +45,7 @@ class DriveUpdater:
         daylightFrames = [x for x in self.lp.frames if x.time.hour >= 8 and x.time.hour <= 18] # frames during daylight
         th_change = str(self.lastFrameTime-lastTwoHourFrames[0].time)
         h_change = str(self.lastFrameTime - lastHourFrames[0].time)
-        
+        #
         # Dictionary to hold all the unique days that have daylight frames
         days={}        
         [days.update({x.time.day:1}) for x in daylightFrames] # This way we only identify days that have frames during the daylight
